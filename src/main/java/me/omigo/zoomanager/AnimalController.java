@@ -1,10 +1,11 @@
 package me.omigo.zoomanager;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -21,12 +22,16 @@ public class AnimalController {
     }
 
     @GetMapping("/animals")
-    public List<Animal> getAllAnimals() {
-        return animalRepository.findAll();
+    public CollectionModel<EntityModel<Animal>> getAllAnimals() {
+        List<EntityModel<Animal>> animals = animalRepository.findAll().stream() //
+                .map(animalModelAssembler::toModel) //
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(animals, linkTo(methodOn(AnimalController.class).getAllAnimals()).withSelfRel());
     }
 
     @GetMapping("/animals/{id}")
-    public EntityModel<Animal> one(@PathVariable Long id) {
+    public EntityModel<Animal> getOneAnimal(@PathVariable Long id) {
         Animal animal = animalRepository.findById(id).orElseThrow(() -> new AnimalNotFoundException(id));
 
         return animalModelAssembler.toModel(animal);
