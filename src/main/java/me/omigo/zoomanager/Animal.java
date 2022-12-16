@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Animal {
     final static int ELEPHANT_REQUIRED_FOOD = 20;
     final static int LION_REQUIRED_FOOD = 11;
@@ -91,6 +92,6 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" + "id=" + this.id + ", name='" + this.name + '\'' + ", species='" + this.species + '\'' + ", required food='" + this.requiredFood + ", zone='" + this.zone.getZoneName() + '\'' + '}';
+        return "Animal{" + "id=" + this.id + ", name='" + this.name + '\'' + ", species='" + this.species + '\'' + ", required food='" + this.requiredFood + ", zone='" + this.zone.getName() + '\'' + '}';
     }
 }

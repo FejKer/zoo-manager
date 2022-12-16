@@ -12,14 +12,14 @@ public class Zone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String zoneName;
+    private String name;        //TODO unique
     @OneToMany(mappedBy = "zone")
     @JsonIgnore
     private Set<Animal> animalSet;
 
-    public Zone(String zoneName) {
+    public Zone(String name) {
         animalSet = new HashSet<>();
-        this.zoneName = zoneName;
+        this.name = name;
     }
 
     public Zone() {
@@ -35,12 +35,12 @@ public class Zone {
     }
 
 
-    public String getZoneName() {
-        return zoneName;
+    public String getName() {
+        return name;
     }
 
-    public void setZoneName(String zoneName) {
-        this.zoneName = zoneName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Animal> getAnimalSet() {

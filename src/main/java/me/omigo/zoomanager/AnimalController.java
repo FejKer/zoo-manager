@@ -4,8 +4,8 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -16,10 +16,12 @@ public class AnimalController {
 
     private final AnimalRepository animalRepository;
     private final AnimalModelAssembler animalModelAssembler;
+    private final AnimalFactory animalFactory;
 
-    public AnimalController(AnimalRepository animalRepository, AnimalModelAssembler animalModelAssembler) {
+    public AnimalController(AnimalRepository animalRepository, AnimalModelAssembler animalModelAssembler, AnimalFactory animalFactory) {
         this.animalRepository = animalRepository;
         this.animalModelAssembler = animalModelAssembler;
+        this.animalFactory = animalFactory;
     }
 
     @GetMapping("/animals")
@@ -50,8 +52,12 @@ public class AnimalController {
     }
 
     @PostMapping("/animals")
-    public Animal createAnimal(@RequestBody Animal animal) {
-        return animalRepository.save(animal);
+    public Animal createAnimal(@RequestBody Map<String, String> request) {
+        String species = request.get("species").toLowerCase();
+        String name = request.get("name");
+        String zone = request.get("zone");
+
+        return animalRepository.save(animalFactory.createAnimal(species, name, zone));
     }
 
 }
