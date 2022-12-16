@@ -24,14 +24,13 @@ public class AnimalController {
 
     @GetMapping("/animals")
     public CollectionModel<EntityModel<Animal>> getAllAnimals() {
-        List<EntityModel<Animal>> animals = animalRepository.findAll().stream() //
-                .map(animalModelAssembler::toModel) //
-                .collect(Collectors.toList());
+        List<EntityModel<Animal>> animals = animalRepository.findAll().stream()
+                .map(animalModelAssembler::toModel).collect(Collectors.toList());
 
         return CollectionModel.of(animals, linkTo(methodOn(AnimalController.class).getAllAnimals()).withSelfRel());
     }
 
-    @GetMapping("/animals/{id}")
+    @GetMapping("/animals/id/{id}")
     public EntityModel<Animal> getOneAnimal(@PathVariable Long id) {
         Animal animal = animalRepository.findById(id).orElseThrow(() -> new AnimalNotFoundException(id));
 
@@ -40,14 +39,8 @@ public class AnimalController {
 
     @GetMapping("/animals/name/{name}")
     public CollectionModel<EntityModel<Animal>> getOneAnimal(@PathVariable String name) {
-        List<EntityModel<Animal>> animals = new ArrayList<>();
-        for (Animal a:
-             animalRepository.findAll()) {
-            if (a.getName().equals(name)) {
-                animals.add(animalModelAssembler.toModel(a));
-            }
-        }
-        if (animals.size() == 0) throw new AnimalNotFoundException(name);
+        List<EntityModel<Animal>> animals = animalRepository.findByName(name).stream()
+                .map(animalModelAssembler::toModel).collect(Collectors.toList());
 
         return CollectionModel.of(animals, linkTo(methodOn(AnimalController.class).getOneAnimal(name)).withRel("animals " + name));
     }
@@ -57,5 +50,4 @@ public class AnimalController {
         return animalRepository.save(animal);
     }
 
-    // other endpoints
 }
