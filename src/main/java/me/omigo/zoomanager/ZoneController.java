@@ -31,7 +31,7 @@ public class ZoneController {
         return CollectionModel.of(zones, linkTo(methodOn(ZoneController.class).getAllZones()).withSelfRel());
     }
 
-    @GetMapping("/zones/{id}")
+    @GetMapping("/zones/id/{id}")
     public EntityModel<Zone> getOneZone(@PathVariable Long id) {
         Zone zone = zoneRepository.findById(id).orElseThrow(() -> new ZoneNotFoundException(id));
 

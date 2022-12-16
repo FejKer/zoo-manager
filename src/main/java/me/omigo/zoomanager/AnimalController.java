@@ -42,6 +42,10 @@ public class AnimalController {
         List<EntityModel<Animal>> animals = animalRepository.findByName(name).stream()
                 .map(animalModelAssembler::toModel).collect(Collectors.toList());
 
+        if (animals.size() == 0) {
+            throw new AnimalNotFoundException(name);
+        }
+
         return CollectionModel.of(animals, linkTo(methodOn(AnimalController.class).getOneAnimal(name)).withRel("animals " + name));
     }
 
