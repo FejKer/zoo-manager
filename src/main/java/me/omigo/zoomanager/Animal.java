@@ -1,5 +1,6 @@
 package me.omigo.zoomanager;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -17,6 +18,7 @@ public abstract class Animal {
     private String species;
     @ManyToOne
     @JoinColumn(name="zone_id")
+    @JsonIgnore
     private Zone zone;
     private int requiredFood;
 

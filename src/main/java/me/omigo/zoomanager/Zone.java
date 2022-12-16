@@ -39,4 +39,12 @@ public class Zone {
     public void setZoneName(String zoneName) {
         this.zoneName = zoneName;
     }
+
+    public Set<Animal> getAnimalSet() {
+        return animalSet;
+    }
+
+    public void setAnimalSet(Set<Animal> animalSet) {
+        this.animalSet = animalSet;
+    }
 }
