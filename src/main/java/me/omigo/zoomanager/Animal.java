@@ -22,12 +22,14 @@ public abstract class Animal {
     @JsonIgnore
     private Zone zone;
     private int requiredFood;
+    private String zoneName;
 
     public Animal(String name, String species, int requiredFood, Zone zone) {
         this.name = name;
         this.species = species;
         this.requiredFood = requiredFood;
         this.zone = zone;
+        this.zoneName = zone.getName();
     }
 
     public Animal() {
@@ -72,6 +74,14 @@ public abstract class Animal {
 
     public void setZone(Zone zone) {
         this.zone = zone;
+    }
+
+    public String getZoneName() {
+        return zoneName;
+    }
+
+    public void setZoneName(String zoneName) {
+        this.zoneName = zoneName;
     }
 
     @Override

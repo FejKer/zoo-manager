@@ -12,7 +12,7 @@ public class AnimalFactory {
     }
 
     public Animal createAnimal(String species, String name, String zoneName) {
-        Zone zone = (Zone) zoneRepository.findByName(zoneName).get(0);  //TODO make this return just one String
+        Zone zone = (Zone) zoneRepository.findByName(zoneName).get(0);  //TODO handle exception
 
         return switch (species) {
             case "lion" -> new Lion(name, zone);
