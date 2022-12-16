@@ -14,7 +14,7 @@ public class AnimalModelAssembler implements RepresentationModelAssembler<Animal
     public EntityModel<Animal> toModel(Animal animal) {
         return EntityModel.of(animal,
                 linkTo(methodOn(AnimalController.class).getOneAnimal(animal.getId())).withSelfRel(),
-                linkTo(methodOn(AnimalController.class).getAllAnimals()).withRel("employees"));
+                linkTo(methodOn(AnimalController.class).getAllAnimals()).withRel("animals"));
     }
 
     @Override

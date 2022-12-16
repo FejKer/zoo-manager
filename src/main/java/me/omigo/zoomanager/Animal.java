@@ -16,6 +16,7 @@ public abstract class Animal {
     private String name;
     private String species;
     @ManyToOne
+    @JoinColumn(name="zone_id")
     private Zone zone;
     private int requiredFood;
 
@@ -60,6 +61,14 @@ public abstract class Animal {
 
     public void setRequiredFood(int requiredFood) {
         this.requiredFood = requiredFood;
+    }
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
     }
 
     @Override
