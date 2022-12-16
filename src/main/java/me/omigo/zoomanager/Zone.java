@@ -12,7 +12,8 @@ public class Zone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;        //TODO unique
+    @Column(unique=true)
+    private String name;
     @OneToMany(mappedBy = "zone")
     @JsonIgnore
     private Set<Animal> animalSet;
