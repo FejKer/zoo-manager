@@ -18,7 +18,7 @@ public class ZoneModelAssembler implements RepresentationModelAssembler<Zone, En
                 linkTo(methodOn(ZoneController.class).getAllZones()).withRel("zones"));
         for (Animal a:
              zone.getAnimalSet()) {
-             model.add(linkTo(methodOn(AnimalController.class).getOneAnimal(a.getId())).withSelfRel());
+             model.add(linkTo(methodOn(AnimalController.class).getOneAnimal(a.getId())).withRel("animals"));
         }
 
         return model;

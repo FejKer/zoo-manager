@@ -4,6 +4,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,20 @@ public class AnimalController {
         Animal animal = animalRepository.findById(id).orElseThrow(() -> new AnimalNotFoundException(id));
 
         return animalModelAssembler.toModel(animal);
+    }
+
+    @GetMapping("/animals/name/{name}")
+    public CollectionModel<EntityModel<Animal>> getOneAnimal(@PathVariable String name) {
+        List<EntityModel<Animal>> animals = new ArrayList<>();
+        for (Animal a:
+             animalRepository.findAll()) {
+            if (a.getName().equals(name)) {
+                animals.add(animalModelAssembler.toModel(a));
+            }
+        }
+        if (animals.size() == 0) throw new AnimalNotFoundException(name);
+
+        return CollectionModel.of(animals, linkTo(methodOn(AnimalController.class).getOneAnimal(name)).withRel("animals " + name));
     }
 
     @PostMapping("/animals")

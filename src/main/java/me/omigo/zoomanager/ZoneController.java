@@ -1,5 +1,6 @@
 package me.omigo.zoomanager;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,6 @@ public class ZoneController {
         this.zoneRepository = zoneRepository;
         this.zoneModelAssembler = zoneModelAssembler;
     }
-
     @GetMapping("/zones")
     public CollectionModel<EntityModel<Zone>> getAllZones() {
         List<EntityModel<Zone>> zones = zoneRepository.findAll().stream() //

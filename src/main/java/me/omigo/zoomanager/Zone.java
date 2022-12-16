@@ -1,5 +1,6 @@
 package me.omigo.zoomanager;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -7,11 +8,13 @@ import java.util.Set;
 
 @Entity
 public class Zone {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String zoneName;
     @OneToMany(mappedBy = "zone")
+    @JsonIgnore
     private Set<Animal> animalSet;
 
     public Zone(String zoneName) {
