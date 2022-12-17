@@ -4,4 +4,8 @@ public class ZoneNotFoundException extends RuntimeException{
     ZoneNotFoundException(Long id) {
         super("Could not find zone " + id);
     }
+
+    ZoneNotFoundException(String name) {
+        super("Could not find zone " + name);
+    }
 }

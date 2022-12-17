@@ -3,9 +3,7 @@ package me.omigo.zoomanager;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +34,15 @@ public class ZoneController {
         Zone zone = zoneRepository.findById(id).orElseThrow(() -> new ZoneNotFoundException(id));
 
         return zoneModelAssembler.toModel(zone);
+    }
+
+    @PostMapping("/zones")
+    public Zone createZone(@RequestBody Zone zone) {
+        if (zoneRepository.findByName(zone.getName()).size() != 0) {
+            throw new IllegalArgumentException("Zone exists with name " + zone.getName());
+        } else {
+            return zoneRepository.save(zone);
+        }
     }
 
 }
