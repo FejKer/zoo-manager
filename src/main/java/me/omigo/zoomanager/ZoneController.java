@@ -20,6 +20,7 @@ public class ZoneController {
         this.zoneRepository = zoneRepository;
         this.zoneModelAssembler = zoneModelAssembler;
     }
+
     @GetMapping("/zones")
     public CollectionModel<EntityModel<Zone>> getAllZones() {
         List<EntityModel<Zone>> zones = zoneRepository.findAll().stream() //
@@ -33,6 +34,26 @@ public class ZoneController {
     public EntityModel<Zone> getOneZone(@PathVariable Long id) {
         Zone zone = zoneRepository.findById(id).orElseThrow(() -> new ZoneNotFoundException(id));
 
+        return zoneModelAssembler.toModel(zone);
+    }
+
+    @GetMapping("/zones/most-food")
+    public EntityModel<Zone> getZoneMostFood() {
+        if (zoneRepository.findAll().size() == 0) {
+            throw new IllegalArgumentException("No zones to display");  //in case there are no zones in database
+        }
+        Zone zone = null;
+        int maxFood = 0;               //initial values
+        int zoneFood = 0;
+        for (Zone z : zoneRepository.findAll()) {       //loop through zones
+            for (Animal a : z.getAnimalSet()) {         //and count required food
+                zoneFood += a.getRequiredFood();
+            }
+            if (zoneFood > maxFood) {
+                zone = z;
+            }
+        }
+        assert zone != null;
         return zoneModelAssembler.toModel(zone);
     }
 
