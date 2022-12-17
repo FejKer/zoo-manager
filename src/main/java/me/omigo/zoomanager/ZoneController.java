@@ -57,6 +57,23 @@ public class ZoneController {
         return zoneModelAssembler.toModel(zone);
     }
 
+    @GetMapping("/zones/least-populated")
+    public EntityModel<Zone> getZoneLeastPopulated() {
+        if (zoneRepository.findAll().size() == 0) {
+            throw new IllegalArgumentException("No zones to display");  //in case there are no zones in database
+        }
+        Zone zone = null;
+        int leastAnimals = Integer.MAX_VALUE;               //initial value
+        for (Zone z : zoneRepository.findAll()) {       //loop through zones
+            if (z.getAnimalSet().size() < leastAnimals) {
+                leastAnimals = z.getAnimalSet().size();
+                zone = z;
+            }
+        }
+        assert zone != null;
+        return zoneModelAssembler.toModel(zone);
+    }
+
     @PostMapping("/zones")
     public Zone createZone(@RequestBody Zone zone) {
         if (zoneRepository.findByName(zone.getName()).size() != 0) {
