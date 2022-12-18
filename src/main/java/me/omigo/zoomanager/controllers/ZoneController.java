@@ -1,10 +1,10 @@
 package me.omigo.zoomanager.controllers;
 
+import me.omigo.zoomanager.entities.Animal;
 import me.omigo.zoomanager.entities.Zone;
 import me.omigo.zoomanager.assemblers.ZoneModelAssembler;
 import me.omigo.zoomanager.exceptions.ZoneNotFoundException;
 import me.omigo.zoomanager.repositories.ZoneRepository;
-import me.omigo.zoomanager.entities.Animal;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class ZoneController {
 
     @GetMapping("/zones")
     public CollectionModel<EntityModel<Zone>> getAllZones() {
-        List<EntityModel<Zone>> zones = zoneRepository.findAll().stream() //puttin zone through ZoneModelAssembler to make data RESTful
+        List<EntityModel<Zone>> zones = zoneRepository.findAll().stream() //putting zone through ZoneModelAssembler to make data RESTful
                 .map(zoneModelAssembler::toModel)
                 .collect(Collectors.toList());
 

@@ -8,14 +8,13 @@ import java.util.Set;
 
 @Entity
 public class Zone {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique=true)    //making name unique on database level
     private String name;
     @OneToMany(mappedBy = "zone")
-    @JsonIgnore                         //@JsonIgnore to NOT display animals this zone has
+    @JsonIgnore                         //@JsonIgnore to NOT display all animals info this zone has
     private Set<Animal> animalSet;      //one-to-many relation with animals
 
     public Zone(String name) {
@@ -35,7 +34,6 @@ public class Zone {
         this.id = id;
     }
 
-
     public String getName() {
         return name;
     }
@@ -50,5 +48,13 @@ public class Zone {
 
     public void setAnimalSet(Set<Animal> animalSet) {
         this.animalSet = animalSet;
+    }
+
+    @Override
+    public String toString() {
+        return "Zone{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
