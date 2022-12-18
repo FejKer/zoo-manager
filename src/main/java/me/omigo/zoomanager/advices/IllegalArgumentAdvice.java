@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class IllegalArgumentAdvice {
-    @ResponseBody
-    @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    String illegalArgumentHandler(IllegalArgumentException ex) {
-        return ex.getMessage();
-    }
+  @ResponseBody
+  @ExceptionHandler(IllegalArgumentException.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  String illegalArgumentHandler(IllegalArgumentException ex) {
+    return ex.getMessage();
+  }
 }
