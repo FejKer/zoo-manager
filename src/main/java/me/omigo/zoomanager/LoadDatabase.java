@@ -20,8 +20,7 @@ class LoadDatabase {
             log.info("Preloading " + animalRepository.save(new Lion("Bilbo", testZone)));
             log.info("Preloading " + animalRepository.save(new Lion("Frodo", testZone)));
             log.info("Preloading " + animalRepository.save(new Rabbit("Rabbit", testZone)));
-            log.info("Preloading " + animalRepository.save(new Elephant("Elephant", testZone)));
-            log.info(animalRepository.findAll().toString());                                      //this is where I try to log content to console
+            log.info("Preloading " + animalRepository.save(new Elephant("Elephant", testZone)));            //testing pre-loaded entities
         };
     }
 }

@@ -12,16 +12,16 @@ public class AnimalFactory {
     }
 
     public Animal createAnimal(String species, String name, String zoneName) {
-        int results = zoneRepository.findByName(zoneName).size();
+        int results = zoneRepository.findByName(zoneName).size();       //check if zone exists
         if (results == 0) {
-            throw new ZoneNotFoundException(zoneName);
+            throw new ZoneNotFoundException(zoneName);                  //if not throw an exception
         } else {
             Zone zone = zoneRepository.findByName(zoneName).get(0);
             return switch (species) {
                 case "lion" -> new Lion(name, zone);
                 case "rabbit" -> new Rabbit(name, zone);
                 case "elephant" -> new Elephant(name, zone);
-                default -> throw new IllegalArgumentException("Invalid animal species: " + species);
+                default -> throw new IllegalArgumentException("Invalid animal species: " + species);        //in case user passed invalid species
             };
         }
     }

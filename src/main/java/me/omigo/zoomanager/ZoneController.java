@@ -23,8 +23,8 @@ public class ZoneController {
 
     @GetMapping("/zones")
     public CollectionModel<EntityModel<Zone>> getAllZones() {
-        List<EntityModel<Zone>> zones = zoneRepository.findAll().stream() //
-                .map(zoneModelAssembler::toModel) //
+        List<EntityModel<Zone>> zones = zoneRepository.findAll().stream() //puttin zone through ZoneModelAssembler to make data RESTful
+                .map(zoneModelAssembler::toModel)
                 .collect(Collectors.toList());
 
         return CollectionModel.of(zones, linkTo(methodOn(ZoneController.class).getAllZones()).withSelfRel());
@@ -77,7 +77,7 @@ public class ZoneController {
     @PostMapping("/zones")
     public Zone createZone(@RequestBody Zone zone) {
         if (zoneRepository.findByName(zone.getName()).size() != 0) {
-            throw new IllegalArgumentException("Zone exists with name " + zone.getName());
+            throw new IllegalArgumentException("Zone exists with name " + zone.getName());      //making the name unique on runtime level
         } else {
             return zoneRepository.save(zone);
         }

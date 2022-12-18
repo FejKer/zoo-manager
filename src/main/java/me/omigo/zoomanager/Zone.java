@@ -12,11 +12,11 @@ public class Zone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique=true)
+    @Column(unique=true)    //making name unique on database level
     private String name;
     @OneToMany(mappedBy = "zone")
-    @JsonIgnore
-    private Set<Animal> animalSet;
+    @JsonIgnore                         //@JsonIgnore to NOT display animals this zone has
+    private Set<Animal> animalSet;      //one-to-many relation with animals
 
     public Zone(String name) {
         animalSet = new HashSet<>();

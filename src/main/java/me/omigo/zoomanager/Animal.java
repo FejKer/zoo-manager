@@ -18,7 +18,7 @@ public abstract class Animal {
     private String name;
     private String species;
     @ManyToOne
-    @JoinColumn(name="zone_id")
+    @JoinColumn(name="zone_id")             //joining column id from zone class
     @JsonIgnore
     private Zone zone;
     private int requiredFood;
@@ -29,7 +29,7 @@ public abstract class Animal {
         this.species = species;
         this.requiredFood = requiredFood;
         this.zone = zone;
-        this.zoneName = zone.getName();
+        this.zoneName = zone.getName();         //getting String name from Zone class
     }
 
     public Animal() {
@@ -84,6 +84,7 @@ public abstract class Animal {
         this.zoneName = zoneName;
     }
 
+    //overriding default methods in case of comparing or printing them
     @Override
     public boolean equals(Object o) {
 

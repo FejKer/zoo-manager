@@ -27,7 +27,7 @@ public class AnimalController {
     @GetMapping("/animals")
     public CollectionModel<EntityModel<Animal>> getAllAnimals() {
         List<EntityModel<Animal>> animals = animalRepository.findAll().stream()
-                .map(animalModelAssembler::toModel).collect(Collectors.toList());
+                .map(animalModelAssembler::toModel).collect(Collectors.toList());       //displays Animals with self links to make data RESTful
 
         return CollectionModel.of(animals, linkTo(methodOn(AnimalController.class).getAllAnimals()).withSelfRel());
     }
@@ -45,7 +45,7 @@ public class AnimalController {
                 .map(animalModelAssembler::toModel).collect(Collectors.toList());
 
         if (animals.size() == 0) {
-            throw new AnimalNotFoundException(name);
+            throw new AnimalNotFoundException(name);    //if there are no results throw an exception
         }
 
         return CollectionModel.of(animals, linkTo(methodOn(AnimalController.class).getOneAnimal(name)).withRel("animals " + name));
@@ -53,7 +53,7 @@ public class AnimalController {
 
     @PostMapping("/animals")
     public Animal createAnimal(@RequestBody Map<String, String> request) {
-        String species = request.get("species").toLowerCase();
+        String species = request.get("species").toLowerCase();      //toLowerCase() just to avoid typos
         String name = request.get("name");
         String zone = request.get("zone");
 
