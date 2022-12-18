@@ -18,7 +18,7 @@ To run the application either download .jar file from releases or clone the repo
 
 Tomcat server will be listening by default on **localhost:8080**
 
-:exclamation: **Keep in mind that in file LoadDatabase.java there are available preloaded animals and zone. If you want them to be saved on each startup you can safely uncomment method `initDatabase()` in the file** :exclamation:
+:exclamation: **Keep in mind that in file `LoadDatabase.java` are available preloaded animals and zone. If you want to use them you can safely uncomment method `initDatabase()` in the file** :exclamation:
 
 ## Endpoints
 - **/zones**  
