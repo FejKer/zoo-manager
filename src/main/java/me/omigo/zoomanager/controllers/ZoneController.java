@@ -78,7 +78,7 @@ public class ZoneController {
             throw new IllegalArgumentException("No zones to display");  //in case there are no zones in database
         }
         Zone zone = null;
-        int leastAnimals = Integer.MAX_VALUE;               //initial value
+        long leastAnimals = Long.MAX_VALUE;               //initial value
         for (Zone z : zoneRepository.findAll()) {       //loop through zones
             if (z.getAnimalSet().size() < leastAnimals) {
                 leastAnimals = z.getAnimalSet().size();
