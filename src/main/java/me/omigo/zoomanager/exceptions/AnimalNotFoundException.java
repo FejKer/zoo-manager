@@ -1,10 +1,10 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.exceptions;
 
 public class AnimalNotFoundException extends RuntimeException {
-    AnimalNotFoundException(Long id) {
+    public AnimalNotFoundException(Long id) {
         super("Could not find animal " + id);
     }
-    AnimalNotFoundException(String name) {
+    public AnimalNotFoundException(String name) {
         super("Could not find animal " + name);
     }
 }

@@ -1,4 +1,4 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.advices;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

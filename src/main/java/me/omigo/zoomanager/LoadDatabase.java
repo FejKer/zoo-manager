@@ -1,5 +1,11 @@
 package me.omigo.zoomanager;
 
+import me.omigo.zoomanager.entities.Elephant;
+import me.omigo.zoomanager.entities.Lion;
+import me.omigo.zoomanager.entities.Rabbit;
+import me.omigo.zoomanager.entities.Zone;
+import me.omigo.zoomanager.repositories.AnimalRepository;
+import me.omigo.zoomanager.repositories.ZoneRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

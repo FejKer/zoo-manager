@@ -1,5 +1,10 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.controllers;
 
+import me.omigo.zoomanager.entities.AnimalFactory;
+import me.omigo.zoomanager.assemblers.AnimalModelAssembler;
+import me.omigo.zoomanager.exceptions.AnimalNotFoundException;
+import me.omigo.zoomanager.repositories.AnimalRepository;
+import me.omigo.zoomanager.entities.Animal;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;

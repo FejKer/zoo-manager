@@ -1,5 +1,6 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.repositories;
 
+import me.omigo.zoomanager.entities.Zone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

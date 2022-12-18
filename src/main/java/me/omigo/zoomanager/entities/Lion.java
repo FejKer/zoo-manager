@@ -1,4 +1,4 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.entities;
 
 import jakarta.persistence.Entity;
 

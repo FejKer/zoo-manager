@@ -1,5 +1,7 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.entities;
 
+import me.omigo.zoomanager.repositories.ZoneRepository;
+import me.omigo.zoomanager.exceptions.ZoneNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component

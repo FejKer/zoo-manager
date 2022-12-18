@@ -1,11 +1,11 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.exceptions;
 
 public class ZoneNotFoundException extends RuntimeException{
-    ZoneNotFoundException(Long id) {
+    public ZoneNotFoundException(Long id) {
         super("Could not find zone " + id);
     }
 
-    ZoneNotFoundException(String name) {
+    public ZoneNotFoundException(String name) {
         super("Could not find zone " + name);
     }
 }

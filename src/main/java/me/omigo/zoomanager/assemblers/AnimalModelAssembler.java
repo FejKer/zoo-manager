@@ -1,5 +1,8 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.assemblers;
 
+import me.omigo.zoomanager.entities.Animal;
+import me.omigo.zoomanager.controllers.AnimalController;
+import me.omigo.zoomanager.controllers.ZoneController;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;

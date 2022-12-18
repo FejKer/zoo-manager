@@ -1,6 +1,10 @@
-package me.omigo.zoomanager;
+package me.omigo.zoomanager.controllers;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import me.omigo.zoomanager.entities.Zone;
+import me.omigo.zoomanager.assemblers.ZoneModelAssembler;
+import me.omigo.zoomanager.exceptions.ZoneNotFoundException;
+import me.omigo.zoomanager.repositories.ZoneRepository;
+import me.omigo.zoomanager.entities.Animal;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
