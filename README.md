@@ -33,6 +33,9 @@ Tomcat server will be listening by default on **localhost:8080**
   - **/id/{id}**  
   *Supports `GET` method, returns zone entity by specified id*
   
+  - **/name/{name}**
+  *Supports `GET` method, returns zone entity by specified name*
+  
 - **/animals**  
 *Supports both `GET` and `POST` methods for retrieving and creating entities respectively*
 
