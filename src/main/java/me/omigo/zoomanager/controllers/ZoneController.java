@@ -40,6 +40,15 @@ public class ZoneController {
 
         return zoneModelAssembler.toModel(zone);
     }
+    @GetMapping("/zones/name/{name}")
+    public EntityModel<Zone> getOneZone(@PathVariable String name) {
+        if (zoneRepository.findByName(name).size() == 0) {
+            throw new ZoneNotFoundException(name);
+        }
+        Zone zone = zoneRepository.findByName(name).get(0);
+
+        return zoneModelAssembler.toModel(zone);
+    }
 
     @GetMapping("/zones/most-food")
     public EntityModel<Zone> getZoneMostFood() {
@@ -54,8 +63,10 @@ public class ZoneController {
                 zoneFood += a.getRequiredFood();
             }
             if (zoneFood > maxFood) {
+                maxFood = zoneFood;
                 zone = z;
             }
+            zoneFood = 0;
         }
         assert zone != null;
         return zoneModelAssembler.toModel(zone);

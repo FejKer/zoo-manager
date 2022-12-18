@@ -1,6 +1,5 @@
 package me.omigo.zoomanager.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -14,7 +13,6 @@ public class Zone {
     @Column(unique=true)    //making name unique on database level
     private String name;
     @OneToMany(mappedBy = "zone")
-    @JsonIgnore                         //@JsonIgnore to NOT display all animals info this zone has
     private Set<Animal> animalSet;      //one-to-many relation with animals
 
     public Zone(String name) {
